@@ -35,7 +35,7 @@ func postgresType(req *plugin.GenerateRequest, col *plugin.Column) (string, bool
 	case "real", "float4", "pg_catalog.float4":
 		return "Float", false
 
-	case "pg_catalog.numeric":
+	case "numeric", "pg_catalog.numeric":
 		return "java.math.BigDecimal", false
 
 	case "bool", "pg_catalog.bool":
@@ -52,13 +52,13 @@ func postgresType(req *plugin.GenerateRequest, col *plugin.Column) (string, bool
 		// Date and time mappings from https://jdbc.postgresql.org/documentation/head/java8-date-time.html
 		return "LocalDate", false
 
-	case "pg_catalog.time", "pg_catalog.timetz":
+	case "time", "pg_catalog.time", "timetz", "pg_catalog.timetz":
 		return "LocalTime", false
 
-	case "pg_catalog.timestamp":
+	case "timestamp", "pg_catalog.timestamp":
 		return "LocalDateTime", false
 
-	case "pg_catalog.timestamptz", "timestamptz":
+	case "timestamptz", "pg_catalog.timestamptz":
 		// TODO
 		return "OffsetDateTime", false
 
