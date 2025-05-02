@@ -11,28 +11,28 @@ func postgresType(req *plugin.GenerateRequest, col *plugin.Column) (string, bool
 	columnType := sdk.DataType(col.Type)
 
 	switch columnType {
-	case "serial", "pg_catalog.serial4":
+	case "serial", "serial4", "pg_catalog.serial4":
 		return "Int", false
 
-	case "bigserial", "pg_catalog.serial8":
+	case "bigserial", "serial8", "pg_catalog.serial8":
 		return "Long", false
 
-	case "smallserial", "pg_catalog.serial2":
+	case "smallserial", "serial2", "pg_catalog.serial2":
 		return "Short", false
 
 	case "integer", "int", "int4", "pg_catalog.int4":
 		return "Int", false
 
-	case "bigint", "pg_catalog.int8":
+	case "bigint", "int8", "pg_catalog.int8":
 		return "Long", false
 
-	case "smallint", "pg_catalog.int2":
+	case "smallint", "int2", "pg_catalog.int2":
 		return "Short", false
 
-	case "float", "double precision", "pg_catalog.float8":
+	case "float", "double precision", "float8", "pg_catalog.float8":
 		return "Double", false
 
-	case "real", "pg_catalog.float4":
+	case "real", "float4", "pg_catalog.float4":
 		return "Float", false
 
 	case "pg_catalog.numeric":
